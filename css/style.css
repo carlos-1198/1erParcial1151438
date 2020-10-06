@@ -9,3 +9,12 @@
 #main img{
 	max-width: 100%;
 }
+
+#footer{
+	background-color: #1d2a48;
+	color: white;
+}
+
+#footer a{
+	color: #f2f2f2;
+}
