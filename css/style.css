@@ -1,0 +1,7 @@
+#menu a{
+	color: white;
+}
+
+#navbar a:hover{
+	background-color: #004eff;
+}
