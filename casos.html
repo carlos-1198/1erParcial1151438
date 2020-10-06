@@ -8,7 +8,50 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="css/style.css">
-    <title>INFO</title>
+    <title>Covid-19</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script type="text/JavaScript">
+
+    // Procesar resultados del webservice
+    function webServiceResult(data)
+    {
+      $("#resultado_json").empty();    
+
+      $("#resultado_json").append("Fecha de notificacion: "+data.fecha_notificacion+"<br>");
+      $("#resultado_json").append("Ciudad de ubicacion: "+data.sys.ciudad+"<br>");
+      $("#resultado_json").append("Atencion: "+data.atencion+"<br>");
+      $("#resultado_json").append("Edad: "+data.edad+"<br>");
+      $("#resultado_json").append("Sexo: "+data.sexo+"<br>");
+      $("#resultado_json").append("Tipo"+data.tipo+"<br>");
+      $("#resultado_json").append("Estado: "+data.estado+"<br>");
+      $("#resultado_json").append("Ubicacion recuperado "+data.ubicacion+"<br>");
+    }
+      
+    // Llamada al webservice
+    function callWebService()
+    {
+      try
+      { 
+        $.ajax({
+          url: "https://www.datos.gov.co/Salud-y-Protecci-n-Social/Casos-positivos-de-COVID-19-en-Colombia/gt2j-8ykr",
+          data:
+          {
+              
+          },
+          type: "get",
+          async: true,
+          contentType: "text/json; charset=utf-8",
+          dataType: "jsonp",        
+          success: function(msg) { webServiceResult(msg) },
+          error: function(jqXmlHttpRequest, textStatus, errorThrown) { alert("Error leyendo datos."); }
+        });
+      } 
+      catch (err) 
+      {
+        alert(err);
+      }
+    }
+  </script>
   </head>
   <body>
     <!--HEADER-->
@@ -21,70 +64,46 @@
       <nav id="menu" class="navbar navbar-expand-lg navbar-light bg-primary">
         <a class="navbar-brand" href="index.html">Home</a>
       </nav>
+      </nav>
     <!--/HEADER-->
-      
+
     <!--main-->
     <main id="main">
-      <section id="coronavirus2">
-        <div class="container-fluid pb-3">
-          <div class="row">
-            <div class="col-12 col-md-6">
-              <h2>Que es un coronavirus</h2>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-              quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-              consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-              cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-              proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-            </div>
-            <div class="col-12 col-md-6">
-              <img src="https://www.sociedadcirugiaocular.com/images/img-coronavirus-covid19.jpg">
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="covid2">
-        <div class="container-fluid pt-3 pb-3">
-          <div class="row">
-            <div class="col-12">
-              <h2>Que es el COVID-19</h2>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-              quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-              consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-              cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-              proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="sintomas2">
-        <div class="container-fluid pb-3">
-          <div class="row">
-            <div class="col-12">
-              <h2>¿Cuales son los sintomas?</h2>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-              quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-              consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-              cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-              proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-              quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-              consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-              cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-              proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-            </div>
-          </div>
-        </div>
-      </section>
+      <button type="button" onclick="javascript:callWebService();">Llamar a WS</button>
+        <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">First</th>
+            <th scope="col">Last</th>
+            <th scope="col">Handle</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>Larry</td>
+            <td>the Bird</td>
+            <td>@twitter</td>
+          </tr>
+        </tbody>
+      </table>
     </main> 
     <!--/main-->
 
-        <!--Footer-->
+    <!--Footer-->
       <footer id="footer">
         <div class="container">
           <div class="row">
@@ -124,5 +143,6 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script type="text/javascript" href="js/main.js"></script>
   </body>
 </html>
