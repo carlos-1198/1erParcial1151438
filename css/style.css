@@ -5,3 +5,7 @@
 #navbar a:hover{
 	background-color: #004eff;
 }
+
+#main img{
+	max-width: 100%;
+}
